@@ -141,13 +141,13 @@ function CodeEntryScreen({ onSubmit }: { onSubmit: (code: string) => void }) {
     // Fetch tool download info and daily PIN on mount
     useEffect(() => {
         // Fetch tool info
-        fetch('/api/tool-download')
+        fetch('https://api.goxprint.com/api/tool-download')
             .then(res => res.json())
             .then(data => setToolInfo(data))
             .catch(() => setToolInfo(null));
 
         // Fetch daily PIN
-        fetch('/api/daily-pin')
+        fetch('https://api.goxprint.com/api/daily-pin')
             .then(res => res.json())
             .then(data => setDailyPin(data))
             .catch(() => setDailyPin(null));
@@ -284,7 +284,7 @@ function Dashboard({ connectionCode }: { connectionCode: string }) {
 
     // Fetch drivers
     useEffect(() => {
-        fetch('/api/drivers')
+        fetch('https://api.goxprint.com/api/drivers')
             .then(res => res.json())
             .then(data => setDrivers(data))
             .catch(err => console.error('Failed to fetch drivers:', err));
@@ -320,7 +320,7 @@ function Dashboard({ connectionCode }: { connectionCode: string }) {
             formData.append('driver', customDriverFile);
             formData.append('temporary', 'true'); // Mark as temporary (auto-delete after 1 hour)
 
-            const response = await fetch('/api/drivers/upload-temp', {
+            const response = await fetch('https://api.goxprint.com/api/drivers/upload-temp', {
                 method: 'POST',
                 body: formData
             });

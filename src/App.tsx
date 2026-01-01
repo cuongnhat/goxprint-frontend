@@ -42,10 +42,8 @@ function useWebSocket(enteredCode: string, onInstallResult?: (result: InstallSta
     const [devices, setDevices] = useState<Device[]>([]);
 
     useEffect(() => {
-        // Use relative path - nginx will proxy to backend
-        const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const wsHost = window.location.host;
-        const socket = new WebSocket(`${wsProtocol}//${wsHost}/ws`);
+        // Connect to production backend
+        const socket = new WebSocket('wss://api.goxprint.com/ws');
 
         socket.onopen = () => {
             console.log('WebSocket connected');

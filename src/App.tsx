@@ -175,15 +175,20 @@ function CodeEntryScreen({ onSubmit }: { onSubmit: (code: string) => void }) {
                     <div className="code-input-wrapper">
                         <KeyRound size={20} />
                         <input
-                            type="text"
+                            type="number"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
                             maxLength={6}
                             placeholder="______"
                             value={code}
-                            onChange={e => {
-                                setCode(e.target.value.replace(/\D/g, ''));
+                            onChange={(e) => {
+                                const value = e.target.value.replace(/\D/g, '').slice(0, 6);
+                                setCode(value);
                                 setError('');
                             }}
+                            onKeyDown={(e) => e.key === 'Enter' && handleSubmit(e)}
                             className="code-input"
+                            autoComplete="off"
                             autoFocus
                         />
                     </div>

@@ -1,0 +1,70 @@
+/* ==================== TAB NAVIGATION ==================== */
+.tab-navigation {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.tab-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 52px;
+}
+
+.tab-button:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.tab-button.active {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+.tab-button svg {
+    flex-shrink: 0;
+}
+
+/* Mobile tabs adjust */
+@media (max-width: 768px) {
+    .tab-button {
+        font-size: 0.85rem;
+        padding: 0.875rem 0.75rem;
+    }
+    
+    .tab-button svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Full width content when tabbed */
+.main-content .sidebar,
+.main-content .main-panel {
+    width: 100%;
+    max-width: none;
+    border: none;
+}
+
+.main-content .sidebar {
+    max-height: calc(100vh - 180px);
+}
